@@ -19,14 +19,14 @@ export const fetchAsyncUpdateProf = createAsyncThunk(
 export const fetchAsyncForgotPassword = createAsyncThunk(
   "auth/forgot",
   async (auth: PROPS_FORGOT) => {
-    const res = await axios.post("/api/forgot-password/", auth);
+    const res = await axios.post("/api/forgot-password", auth);
     return res.data;
   }
 );
 export const fetchAsyncResetPassword = createAsyncThunk(
   "auth/reset",
   async (auth: PROPS_RESET) => {
-    const res = await axios.post("/api/reset-password/", auth);
+    const res = await axios.post("/api/reset-password", auth);
     return res.data;
   }
 );
