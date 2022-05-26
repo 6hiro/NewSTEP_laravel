@@ -71,18 +71,11 @@ export const fetchAsyncGetLikedPosts = createAsyncThunk(
         return res.data;
     }
 );
-export const fetchAsyncUpdatePost = createAsyncThunk(
-    "patch/post",
-    async (post: {id: string | undefined, is_public: boolean}) => {
-        const res = await axios.patch(`/api/post/${post.id}`, {is_public: post.is_public});
-        return res.data;
-    }
-)
 export const fetchAsyncLikeUnlikePost = createAsyncThunk(
     "like/post",
     async (postId: string) => {
         // await axios.get(`/sanctum/csrf-cookie`);
-        const res = await axios.put(`/api/post/${postId}/like/`,{});
+        const res = await axios.put(`/api/post/${postId}/like`,{});
         return res.data;
     }
 );
@@ -104,7 +97,7 @@ export const fetchAsyncSharePost = createAsyncThunk(
     "share/post",
     async (postId: string) => {
     //   uploadData.append("isPublic", newPost.isPublic);
-        const res = await axios.post(`/api/post/${postId}/share/`, {});
+        const res = await axios.post(`/api/post/${postId}/share`, {});
         return res.data;
     }
 );
@@ -112,7 +105,7 @@ export const fetchAsyncUnsharePost = createAsyncThunk(
     "unshare/post",
     async (postId: string) => {
     //   uploadData.append("isPublic", newPost.isPublic);
-        const res = await axios.post(`/api/post/${postId}/unshare/`, {});
+        const res = await axios.post(`/api/post/${postId}/unshare`, {});
         return res.data;
     }
 );

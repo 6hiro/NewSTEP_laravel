@@ -30,9 +30,9 @@ use App\Http\Resources\UserResource;
 Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify'); 
+Route::get('/email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify'); 
 // Make sure to keep this as your route name
-Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+Route::get('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
