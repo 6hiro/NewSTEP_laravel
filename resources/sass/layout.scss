@@ -24,7 +24,9 @@
             position: relative;
             z-index: 100;
         }
-        
+    }
+    &__content_auth{
+        background-color: $subColor;
     }
 }
 

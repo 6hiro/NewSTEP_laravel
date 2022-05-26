@@ -35,7 +35,7 @@ const Layout = () => {
         <>
             <Sidebar />
             <div className="main">
-                <div className="main__content">
+                <div className={`main__content ${isAuth ? "main__content_auth" :""}`}>
                     <ToastContainer
                         position='top-right'
                         autoClose={3000}
