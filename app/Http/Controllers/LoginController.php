@@ -27,11 +27,11 @@ class LoginController extends Controller
             ], 401);
         }
         // email認証済みか検証
-        if (!Auth::user()->hasVerifiedEmail()) {
-            return response()->json([
-                'error'=>'Your email address is not verified.'
-            ], 403);
-        }
+        // if (!Auth::user()->hasVerifiedEmail()) {
+        //     return response()->json([
+        //         'error'=>'Your email address is not verified.'
+        //     ], 403);
+        // }
 
         $request->session()->regenerate();
         return response()->json([
