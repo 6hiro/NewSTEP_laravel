@@ -10,9 +10,7 @@
 }
 
 html {
-    // overflow-x: hidden;
-    height: -webkit-fill-available;
-    height: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -23,7 +21,6 @@ body {
     background-color: $bodyBg;
     overflow-x: hidden;
     min-height: 100vh;
-    min-height: -webkit-fill-available;
 }
 
 a {

@@ -136,14 +136,15 @@ class PostController extends Controller
         if($request->since){
             $posts = $user->likes()
                 // ->withPivot(['created_at'])
+                ->with(['tags', 'user'])
+                ->withPivot('created_at AS joined_at')
+                ->orderBy('joined_at', 'desc')
                 ->whereHas('likes', function($query) use ($since, $id)  {
                     $query->where('likes.created_at', '<', $since);
                 })
-                ->with(['tags', 'user'])
                 // ->where('is_shared', false)
                 // ->withPivot(['created_at'])
-                ->withPivot('created_at AS joined_at')
-                ->orderBy('joined_at', 'desc')
+
                 // ->orderBy('pivot_created_at', 'desc')
                 ->take($per_page+1)
                 ->get();
