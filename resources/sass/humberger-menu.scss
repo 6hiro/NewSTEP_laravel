@@ -8,11 +8,7 @@
         // margin-bottom: $mobileSpacing;
     }
 }
-@include tablet {
-    .sidebar-open .humberger-menu {
-        border-radius: 30px;
-    }
-}
+
 .sidebar-toggle {
     --size: 40px;
     width: var(--size);
