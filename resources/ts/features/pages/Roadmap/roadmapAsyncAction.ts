@@ -16,11 +16,11 @@ export const fetchAsyncGetRoadmapsMore = createAsyncThunk("roadmapMore/get", asy
     return res.data;
   });
   export const fetchAsyncGetRoadmap = createAsyncThunk("roadmap/get", async (roadmapId: string | undefined) => {
-    const res = await axios.get(`/api/roadmap/${roadmapId}/`);
+    const res = await axios.get(`/api/roadmap/${roadmapId}`);
     return res.data
   })
   export const fetchAsyncGetUserRoadmaps = createAsyncThunk("ownroadmaps/get", async (userId: string | undefined) => {
-    const res = await axios.get(`/api/roadmap/user/${userId}/`);
+    const res = await axios.get(`/api/roadmap/user/${userId}`);
     return res.data;
   });
   export const fetchAsyncNewRoadmap = createAsyncThunk(
@@ -32,7 +32,7 @@ export const fetchAsyncGetRoadmapsMore = createAsyncThunk("roadmapMore/get", asy
   export const fetchAsyncGetFollowingsRoadmaps = createAsyncThunk(
     "followingsRoadmaps/get",
     async () => {
-      const res = await axios.get(`/api/followings/roadmap/`);
+      const res = await axios.get(`/api/followings/roadmap`);
       return res.data;
     }
   );
@@ -41,24 +41,24 @@ export const fetchAsyncGetRoadmapsMore = createAsyncThunk("roadmapMore/get", asy
       return res.data;
   });
   export const fetchAsyncGetSearchedRoadmapLatest = createAsyncThunk("searchRoadmapsLatest/get", async (word: string) => {
-    const res = await axios.get(`/api/roadmap/search/${word}/latest/`);
+    const res = await axios.get(`/api/roadmap/search/${word}/latest`);
     return res.data;
   })
   export const fetchAsyncUpdateRoadmap = createAsyncThunk(
     "roadmap/patch", 
     async (updateRoadmap: PROPS_UPDATE_ROADMAP) => {
-      const res = await axios.patch(`/api/roadmap/${updateRoadmap.roadmap}/`, updateRoadmap);
+      const res = await axios.patch(`/api/roadmap/${updateRoadmap.roadmap}`, updateRoadmap);
       return res.data;
     }
   );
   export const fetchAsyncDeleteRoadmap = createAsyncThunk("roadmapDelete/delete", async (id: string | undefined) => {
-    const  res  = await axios.delete(`/api/roadmap/${id}/`);
+    const  res  = await axios.delete(`/api/roadmap/${id}`);
     return res.data;
   });
   export const fetchAsyncSaveUnsaveRoadmap = createAsyncThunk(
     "save/put",
     async (roadmapId: string) => {
-      const res = await axios.put(`/api/roadmap/${roadmapId}/save/`,{});
+      const res = await axios.put(`/api/roadmap/${roadmapId}/save`,{});
       return res.data;
     }
   );
@@ -70,7 +70,7 @@ export const fetchAsyncGetRoadmapsMore = createAsyncThunk("roadmapMore/get", asy
     }
   );
   export const fetchAsyncGetSteps = createAsyncThunk("steps/get", async(roadmapId: string | undefined) =>{
-    const res = await axios.get(`/api/step/roadmap/${roadmapId}/`);
+    const res = await axios.get(`/api/step/roadmap/${roadmapId}`);
     return res.data
   })
   export const fetchAsyncNewStep = createAsyncThunk("step/post", async (newStep: PROPS_NEW_STEP) => {
@@ -84,7 +84,7 @@ export const fetchAsyncGetRoadmapsMore = createAsyncThunk("roadmapMore/get", asy
         content: updateStep.content,
         state: updateStep.state
       }
-      const res = await axios.patch(`/api/step/${updateStep.step}/`, uploadData);
+      const res = await axios.patch(`/api/step/${updateStep.step}`, uploadData);
       return res.data;
     }
   );
@@ -94,12 +94,12 @@ export const fetchAsyncGetRoadmapsMore = createAsyncThunk("roadmapMore/get", asy
       const uploadData = {
         memo: updateStep.memo,
       }
-      const res = await axios.patch(`/api/step/memo/${updateStep.step}/`, uploadData);
+      const res = await axios.patch(`/api/step/memo/${updateStep.step}`, uploadData);
       return res.data;
     }
   );
   export const fetchAsyncDeleteStep = createAsyncThunk("stepDelete/delete", async (id: string) => {
-    const  res  = await axios.delete(`/api/step/${id}/`);
+    const  res  = await axios.delete(`/api/step/${id}`);
     return res.data;
   });
   export const fetchAsyncChangeStepOrder = createAsyncThunk("editstep/post", async (editStep: PROPS_CHANGE_STEP_ORDER) => {

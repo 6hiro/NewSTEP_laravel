@@ -58,9 +58,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::get('/followings/post', [PostController::class, 'followingsPost'])->name('followingsPost');
     Route::get('/post/user/{id}', [UserController::class, 'userPosts'])->name('userPosts');
     Route::get('/post/user/{user}/like', [PostController::class, 'likedPosts'])->name('likedPosts');
-    Route::put('/post/{post}/like', [PostController::class, 'likeUnlike'])->name('likeUnlike');
-    Route::post('/post/{id}/share', [PostController::class, 'sharePost'])->name('sharePost');
-    Route::post('/post/{post}/unshare', [PostController::class, 'unsharePost'])->name('unsharePost');
+    Route::put('/post-like/{post}', [PostController::class, 'likeUnlike'])->name('likeUnlike');
+    Route::post('/post-share/{id}', [PostController::class, 'sharePost'])->name('sharePost');
+    Route::post('/post-unshare/{post}', [PostController::class, 'unsharePost'])->name('unsharePost');
     Route::get('/post/hashtag/{id}', [PostController::class, 'hashtag'])->name('hashtag');
     Route::get('/post/hashtag/{id}/latest', [PostController::class, 'hashtagLatest'])->name('hashtagLatest');
     Route::get('/post/search/{word}', [PostController::class, 'searchPosts'])->name('searchPosts');
