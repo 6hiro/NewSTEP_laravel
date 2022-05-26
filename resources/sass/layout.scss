@@ -12,7 +12,8 @@
     &__content {
         // min-height: 100vh;
         min-height: 100vh; /* Fallback */
-        min-height: calc(var(--vh, 1vh) * 100);
+        // min-height: calc(var(--vh, 1vh) * 100);
+        height: 100dvh;
         // padding: $spacing;
         transition: all 0.5s ease;
         overflow-x: hidden;
