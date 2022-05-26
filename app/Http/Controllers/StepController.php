@@ -110,7 +110,6 @@ class StepController extends Controller
             $step->content = $request->content;
             $step->state = $request->state;
             $step->save();
-    
             return $step
                 ? response()->json(['step'=>new StepResource($step)])
                 : response()->json([], 500);

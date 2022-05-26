@@ -37,7 +37,7 @@ export const fetchAsyncGetRoadmapsMore = createAsyncThunk("roadmapMore/get", asy
     }
   );
   export const fetchAsyncGetSearchedRoadmap = createAsyncThunk("searchRoadmaps/get", async (word: string) => {
-      const res = await axios.get(`/api/roadmap/search/${word}/`);
+      const res = await axios.get(`/api/roadmap/search/${word}`);
       return res.data;
   });
   export const fetchAsyncGetSearchedRoadmapLatest = createAsyncThunk("searchRoadmapsLatest/get", async (word: string) => {
@@ -74,7 +74,7 @@ export const fetchAsyncGetRoadmapsMore = createAsyncThunk("roadmapMore/get", asy
     return res.data
   })
   export const fetchAsyncNewStep = createAsyncThunk("step/post", async (newStep: PROPS_NEW_STEP) => {
-    const res = await axios.post(`/api/step/`, newStep);
+    const res = await axios.post(`/api/step`, newStep);
     return res.data;
   });
   export const fetchAsyncUpdateStep = createAsyncThunk(

@@ -307,10 +307,20 @@ export const roadmapSlice = createSlice({
         })
       });
       builder.addCase(fetchAsyncNewStep.fulfilled, (state, action) => {
-        return {
-          ...state,
-          steps: [...state.steps, action.payload.step],
-        };
+        state.steps =  [...state.steps, {
+          id: action.payload.step.id,
+          roadmap: action.payload.step.roadmap_id,
+          content: action.payload.step.content,
+          memo: "",
+          state: action.payload.step.state,
+          order: action.payload.step.order,
+          createdAt: action.payload.step.created_at,
+          updatedAt: action.payload.step.updated_at
+        }]
+        // return {
+        //   ...state,
+        //   steps: [...state.steps, action.payload.step],
+        // };
       });
       builder.addCase(fetchAsyncUpdateStep.fulfilled, (state, action) => {
         state.steps = state.steps.map((step) =>
