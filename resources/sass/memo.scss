@@ -1,0 +1,94 @@
+@use "./abstracts/" as *;
+.memo{
+    padding: 8px;
+
+    .step_content{
+        font-size: 20px;
+        padding: 5px;
+        font-weight: 500;
+    }
+    &__edit{
+        textarea {
+            display: block;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            width: 100%;
+            height: calc(50vh - 130px);
+            padding: 10px;
+            resize: none;
+            font-size: inherit;
+            font-family: inherit;
+          }
+    }
+    &__preview{
+        padding: 5px;
+        word-break: break-all;
+        border: 1px solid #ddd;
+        overflow-y: scroll;
+        // background: rgba(0, 0, 0, 0.02);
+        background: $mainBg;
+    
+        .markdown-preview h1,
+        .markdown-preview h2,
+        .markdown-preview h3,
+        .markdown-preview h4,
+        .markdown-preview h5,
+        .markdown-preview h6 {
+            font-weight: 600;
+            // padding-bottom: 10px !important;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+        h3 {
+            font-size: 1.3rem;
+        }
+        h4 {
+            font-size: 1.1rem;
+        }
+        h5 {
+            font-size: 0.9rem;
+        }
+        h6 {
+            font-size: 0.7rem;
+        }
+        p code {
+            background-color: #ebebeb;
+        }
+        p a {
+            color: #0000ee;
+        }
+        p a:visited {
+            color: blue;
+        }
+        // ul li {
+        // list-style: inside;
+        // }
+        // ul li ul {
+        // margin-left: 1rem;
+        // }
+        // ol li {
+        // list-style: inside;
+        // list-style-type: decimal;
+        // }
+        table,
+        td {
+            border: 1px solid #333;
+        }
+        
+        thead,
+        tfoot {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        blockquote {
+            font-size: 0.95rem;
+            margin: 1.4rem 0;
+            border-left: 3px solid #b3bfc7;
+            padding: 2px 0 2px 0.7em;
+            color: #626e77;
+        }
+        
+    }
+}

@@ -1,0 +1,41 @@
+.add_roadmap {
+    // background-color: #fff;
+    margin-top: 45px;
+    // padding: 5px 0;
+    /* border-radius: 2rem 0; */
+    .title {
+        font-size: 1.5rem;
+        text-align: center;
+        color: #666;
+        /* margin-top: 50px; */
+        /* color: #fff; */
+    }
+    .add_post {
+        text-align: center;
+        width: 320px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .post_error {
+        // color: #ff00ff;
+        background: #fdeded;
+        color: #ff6584;
+        font-size: 12px;
+        text-align: center;
+        padding: 5px;
+        margin: 2px 0;
+    }
+    .post_button {
+        text-align: right;
+    }
+    .notes {
+        color: #6e6e6e;
+        text-align: left;
+    }
+    .post_progress {
+        margin: 15px 0;
+        display: flex;
+        justify-content: center;
+    }
+}

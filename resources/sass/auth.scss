@@ -1,0 +1,141 @@
+@use "./abstracts/" as *;
+
+.auth_form {
+    background-color: #3da9fc;
+    min-width: 320px;
+    margin: 0px auto;
+    padding: 30px 10px;
+    display: grid;
+    grid-template:
+        ".... .... .... .... ...." 10px
+        ".... left .... right ...." 1fr
+        ".... .... .... .... ...." 10px
+        /60px 1fr  10px 1fr 60px;
+
+    &__left{
+        grid-area: left;
+        @include flex(center, space-around);
+        height: 85vh;
+
+        .auth_img{
+            // background-color: $subColor;
+            border-radius: 3rem 0;
+            // box-shadow: 5px 4px 6px #555;
+            // padding: 5rem 1.5rem;
+            padding: 8rem 1.5rem;
+        }
+
+    }
+    &__right{
+        grid-area: right;
+        padding: 10px 10px 20px 10px;
+        font-size: 0.9rem;
+        margin: auto 0;
+        background: $mainBg;
+        border-radius: 0.7rem 0.7rem ;
+        box-shadow: 3px 3px 2px #555;
+
+        &__title{
+            font-size: $fontSizeMedium;
+            font-family: sans-serif;
+            font-weight: bold;
+            color: $txtColor;
+            margin: 5px 0;
+            text-align: center;
+        }
+        .auth_progress {
+            margin: 5px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .auth_message {
+            text-align: center;
+            color: #333;
+            background-color: #a1fcaf;
+            padding: 0.6rem 0;
+            margin-bottom: 0.4rem;
+        }
+        .input_field{
+            margin: 5px 0 5px 0;
+        }
+        .auth_error {
+            // color: #ff00ff;
+            background: #fdeded;
+            color: #ff6584;
+            // /* font-weight: 600; */
+            font-size: 12px;
+            text-align: center;
+            padding: 5px;
+            margin: 2px 0;
+            // margin: 2px 0 15px 0;
+        }
+        .auth_button {
+            text-align: right;
+            margin: 10px 0 15px 0;
+        }
+        .auth_span {
+            color: $blue;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .auth_text {
+            padding: 5px 0;
+            text-align: center;
+        }
+        
+    }
+}
+@media screen and (max-width: 860px) {
+    .auth_form {
+        height: 100vh;
+        background-color: $subColor;
+        margin: 0 auto;
+        margin-top: -190px;
+        grid-template:
+            "left" 1fr
+            "right";
+
+        &__left{
+            // border: 0rem solid #555;
+            box-shadow: 0px 0px 0px #555;
+            height: 100vh;
+            .auth_img{
+                // background-color: $subColor;
+                border-radius: 0;
+                box-shadow: 0px 0px 0px #555;
+                padding: 0;
+
+            }
+            .forgot_password_img{
+                margin-top: 8rem;
+                border-radius: 5%;
+                // background: $white;
+            }
+            .login_img{
+                margin-top: 5rem;
+            }
+            .reset_password_img{
+                margin-top: 4rem;
+            }
+        }
+        &__right{
+            border-top: 1px solid rgb(229, 231, 235);
+            box-shadow: 0px 0px 0px #555;
+            background: $mainBg;
+            border-radius: 0.7rem 0.7rem 0 0 ;
+            width: 100vw;
+            position: absolute;
+            z-index: 200;
+            bottom: 0rem;
+            left: 0;
+
+
+        }
+    }
+}
+
+
+
+
+
+

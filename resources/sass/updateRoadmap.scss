@@ -1,0 +1,32 @@
+.update_form {
+    // margin: auto 0;
+    .title {
+        text-align: center;
+        margin-top: 40px;
+    }
+    .add_post {
+        background-color: #fff;
+        text-align: center;
+        width: 300px;
+        margin: 0 auto;
+    }
+    .post_error {
+        color: #ff00ff;
+        text-align: center;
+        margin: 10px;
+    }
+    .post_button {
+        text-align: right;
+    }
+    .notes {
+        font-size: 1rem;
+        color: #6e6e6e;
+        text-align: left;
+        margin: 15px 5px;
+    }
+    .post_progress {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+    }
+}

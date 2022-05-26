@@ -1,0 +1,13 @@
+{
+    "Verify Email Address":"メールアドレスを検証",
+    "Please click the button below to verify your email address.":"メールアドレスの検証を行うため下記のボタンをクリックして下さい。",
+    "If you did not create an account, no further action is required.":"もしアカウントを作成していない場合は追加の処理は必要ありません。",
+    "Reset Password Notification":"パスワードリセットを通知",
+    "Forgot Password?":"パスワードをお忘れですか？",
+    "If you don't remember this email, you can leave it alone.":"もしこのメールに覚えがない場合は放置して問題ございません。",
+    "Thank you for using our application!":"私たちのアプリケーションをご利用いただきありがとうございます！",
+    "Click to reset":"クリックしてリセット",
+    "Whoops!": "エラー発生",
+    "Hello!": "こんにちは",
+    "Regards": "ご利用ありがとうございます！"
+}

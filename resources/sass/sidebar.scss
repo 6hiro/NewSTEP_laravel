@@ -1,0 +1,70 @@
+@use "./abstracts/" as *;
+// @use "sass:math";
+
+.sidebar {
+    @include flex(stretch, flex-start);
+    flex-direction: column;
+    width: $sideBarWidth;
+    background-color: $bodyBg;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+
+    @include tablet {
+        width: 100vw;
+        z-index: 1;
+    }
+    &__header {
+        @include flex(center, space-between);
+        padding: 3px 5px 3px 0px;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: $buttonColor;
+        font-style: italic;
+
+        &__logo {
+            padding: 3px 20px 0px 20px;
+            margin: 0px 10px;
+            border-bottom: 2px double $buttonColor;
+        }
+        .sidebar-close {
+            cursor: pointer;
+            display: none;
+            padding-top: 10px;
+            // color: $buttonColor;
+
+            i {
+                font-size: 2rem;
+            }
+
+            @include tablet {
+                display: block;
+            }
+        }
+    }
+    &__menu {
+        height: 100%;
+        padding: 15px;
+        // row-gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: 3rem;
+        font-size: 1.18rem;
+        color: $txtColor;
+        overflow: auto;
+        scrollbar-width: none; /* For mozilla */
+
+        &__item {
+            @include flex(center, baseline);
+            padding-bottom: 18px;
+            cursor: pointer;
+            font-size: $fontSizeMedium;
+
+            &__txt {
+                padding-left: 0.5rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,89 @@
+@use "./abstracts/" as *;
+
+.steps {
+    margin: 0 auto;
+    // min-height: 100vh;
+    display: grid;
+    grid-template:
+        ".... .... .... .... ...." 45px
+        ".... left .... right ...." 1fr
+        /10px 1fr 10px 1fr 10px;
+
+    &__roadmap {
+        grid-area: left;
+        width: 360px;
+        margin: 0 auto;
+        padding: 0px 10px;
+        // border-right: 2px solid $mainColor;
+        // border-radius: 1rem;
+        color: $black;
+        word-break: break-all;
+
+        &__header {
+            border-bottom: 1px solid rgba(229, 231, 235, 1);
+            display: flex;
+            // padding-bottom: 2px;
+            // justify-content: flex-end;
+
+            &__left {
+                padding: 6px;
+            }
+            &__right {
+                margin-left: 0.25rem;
+                &__nick_name {
+                    font-size: 15px;
+                }
+                &__dates {
+                    width: 280px;
+                    font-size: 13px;
+                    color: rgb(88, 94, 78);
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+
+        &__title {
+            font-size: $fontSizeLarge;
+            font-weight: bolder;
+            padding-bottom: 5px;
+            // overflow-wrap: break-word;
+        }
+        &__overview {
+            font-size: $fontSizeNormal;
+            // border-top: 3px double $black;
+            padding-bottom: 5px;
+            margin-bottom: 40px;
+        }
+    }
+    &__list {
+        grid-area: right;
+        width: 360px;
+        margin: 30px auto;
+
+        .edit_order {
+            cursor: pointer;
+            background: $buttonColor;
+            border-radius: 5px;
+            margin: 0 5px 10px auto;
+            padding: 5px;
+            width: 140px;
+            font-size: 1rem;
+            color: $white;
+            text-align: center;
+        }
+
+        .down_icon {
+            margin: 0.5rem 0;
+            text-align: center;
+        }
+    }
+}
+@media screen and (max-width: 760px) {
+    .steps {
+        grid-template:
+            "...." 45px
+            "left" 1fr
+            "right";
+    }
+}

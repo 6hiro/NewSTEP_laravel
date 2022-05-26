@@ -1,0 +1,39 @@
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+@media only screen and (max-width: 1000px) {
+  .topnav {
+    margin-bottom: 12px;
+  }
+}
+
+.sidebar-toggle {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: none;
+}
+@media only screen and (max-width: 1000px) {
+  .sidebar-toggle {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    right: 0.4rem;
+    top: 0.4rem;
+    background: #fff;
+    border-radius: 30%;
+    border: 0.5px solid rgb(229, 231, 235);
+    box-shadow: 2px 1px 5px rgba(93, 98, 251, 0.6);
+  }
+}
+.sidebar-toggle i {
+  font-size: 2rem;
+  color: #6380c9;
+}

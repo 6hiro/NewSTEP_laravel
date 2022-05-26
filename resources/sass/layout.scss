@@ -1,0 +1,42 @@
+@use "./abstracts/" as *;
+
+.main {
+    padding-left: $sideBarWidth;
+    // overflow-x: hidden;
+
+    @include tablet {
+        padding-left: 0;
+        width: 100vw;
+    }
+
+    &__content {
+        min-height: 100vh;
+        // padding: $spacing;
+        transition: all 0.5s ease;
+        overflow-x: hidden;
+        // overflow-y: scroll;
+        transform-origin: 0 0;
+
+        background-color: $mainBg;
+
+        @include tablet {
+            // padding: 40px 10px 10px 10px;
+            position: relative;
+            z-index: 100;
+        }
+        
+    }
+}
+
+@include tablet {
+    .sidebar-open .main__content {
+        height: 100vh;
+        overflow-y: hidden;
+        border-radius: 30px;
+        border: 1px solid rgb(229, 231, 235);
+        // box-shadow: -3px 3px 5px #333;
+        transform: scale(0.85) translateX(225px);
+        transform-origin: 0px 400px;
+        transition: all 0.5s ease-in-out;
+    }
+}

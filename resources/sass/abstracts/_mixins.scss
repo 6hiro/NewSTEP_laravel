@@ -1,0 +1,19 @@
+@use "./variables" as *;
+
+@mixin flex($alignItem: center, $justifyContent: center) {
+    display: flex;
+    align-items: $alignItem;
+    justify-content: $justifyContent;
+}
+//スタイルだけでなくメディアクエリの処理ごと@includeで渡したいので中身に@contentをつけておく
+@mixin mobile {
+    @media only screen and (max-width: $mobile-width) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
+}

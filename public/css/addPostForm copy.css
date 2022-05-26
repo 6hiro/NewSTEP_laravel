@@ -1,0 +1,100 @@
+.add_post_form {
+  margin: 10px;
+}
+.add_post_form__progress {
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+}
+.add_post_form__title {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #666;
+  background-color: #555;
+}
+.add_post_form__input {
+  margin-top: 20px;
+  position: relative;
+}
+.add_post_form__input__content textarea {
+  width: 100% !important;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 300;
+  color: #555;
+  border: none;
+  background: rgba(230, 230, 230, 0.6);
+  border: 1px solid rgba(230, 230, 230, 0.6);
+  border-radius: 5px;
+}
+.add_post_form__input__content textarea:focus {
+  border: 1px solid #3b72ff;
+}
+.add_post_form__input__content span {
+  position: absolute;
+  left: 6px;
+  padding: 5px 0;
+  font-size: 18px;
+  font-weight: 300;
+  color: #d9d9d9;
+  transition: 0.5s;
+  pointer-events: none;
+}
+.add_post_form__input__content textarea:focus ~ span,
+.add_post_form__input__content textarea:valid ~ span {
+  transform: translateY(-22px);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #3b72ff;
+  color: #666;
+}
+.add_post_form__input__content textarea:focus ~ span {
+  color: #3b72ff;
+}
+.add_post_form__input__state {
+  display: flex;
+  width: 80%;
+  margin: 14px 0;
+  justify-content: space-between;
+}
+.add_post_form__input__state label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.add_post_form__input__state label .dot {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: #d9d9d9;
+  border: 5px solid transparent;
+  transition: all 0.3s ease;
+}
+.add_post_form__input__state label .checked {
+  background: #3b72ff;
+  border-color: #d9d9d9;
+}
+.add_post_form__input__state input[type=radio] {
+  display: none;
+}
+.add_post_form__input__submit {
+  width: 100%;
+  text-align: right;
+}
+.add_post_form__input__submit__button {
+  width: 20%;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #3b72ff;
+  font-size: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  padding: 0.25rem 0.5rem;
+  transition: 0.3s;
+}
+.add_post_form__input__submit__button:hover {
+  background: #3364df;
+}

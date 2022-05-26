@@ -1,0 +1,18 @@
+@use "./abstracts/" as *;
+
+.add_step_button {
+    padding: 1.8rem;
+    border: 2px dashed #999;
+    border-radius: 0.5rem;
+    color: #999;
+    // background: $white;
+    cursor: pointer;
+    @include flex(center, center);
+
+    &__text {
+        font-size: $fontSizeMedium;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+}

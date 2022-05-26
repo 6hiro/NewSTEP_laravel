@@ -1,0 +1,85 @@
+@use "./abstracts/" as *;
+
+.post_container {
+    background: $white;
+    border-radius: 10px;
+    border: 1px solid rgba(229, 231, 235, 1);
+    margin-top: 2px;
+    min-width: 300px;
+    // box-shadow: 2px 2px 3px #5d62fb99;;
+
+    .post__shared_by {
+        padding: 0.2rem 0.8rem;
+        font-size: 1rem;
+    }
+}
+.post {
+    display: flex;
+
+    .post_icon {
+        width: 40px;
+        margin: 5px;
+    }
+
+    .post_main {
+        // min-width: 290px;
+        width: calc(100% - 40px);
+        padding: 0 5px;
+
+        .post_main_header {
+            display: flex;
+            justify-content: space-between;
+            .post_nick_name {
+                font-size: 1rem;
+                padding: 8px 0;
+                .post_user_name {
+                    font-size: 0.9rem;
+                    font-weight: 400;
+                    // padding: 8px 0;
+                }
+            }
+
+            .posted_at {
+                font-size: 12px;
+                color: rgb(88, 94, 78);
+                padding: 16px 0;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    .post_text {
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        padding: 10px;
+        padding-left: 20px;
+        margin-bottom: 5px;
+
+        .post_hashtag {
+            cursor: pointer;
+            color: blue;
+        }
+    }
+    .posted_at {
+        color: rgb(88, 94, 78);
+        padding-right: 10px;
+        text-align: right;
+    }
+
+    .post_additional_elements {
+        position: relative;
+        padding: 8px;
+        padding-top: 0;
+        padding-bottom: 0;
+        display: flex;
+        justify-content: space-between;
+
+        .post_likes {
+            position: relative;
+            top: 1.5px;
+            // margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+}
