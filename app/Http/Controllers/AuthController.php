@@ -37,7 +37,7 @@ class AuthController extends Controller
             ])
             // ->sendEmailVerificationNotification()
             ;
-            // event(new Registered($user));
+            event(new Registered($user));
             
             return response()->json([
                 'status'=>200,
