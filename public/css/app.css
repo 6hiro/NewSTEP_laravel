@@ -1,2 +1,2 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap);
-*{box-sizing:border-box;margin:0;padding:0}body,html{overflow-x:hidden}body{background-color:#f3f6fd;font-family:Poppins,sans-serif;font-size:1.125rem;height:100vh;height:100dvh;line-height:1.5}a{color:unset;text-decoration:none}img{width:100%}li,ul{list-style-type:none}
+*{box-sizing:border-box;margin:0;padding:0}body,html{overflow-x:hidden}body{background-color:#f3f6fd;font-family:Poppins,sans-serif;font-size:1.125rem;line-height:1.5;min-height:100vh;min-height:100dvh}a{color:unset;text-decoration:none}img{width:100%}li,ul{list-style-type:none}
