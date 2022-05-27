@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-// https://readouble.com/laravel/8.x/ja/eloquent-relationships.html
 
 class Post extends Model
 {
@@ -39,26 +38,13 @@ class Post extends Model
     {
         return $this->hasMany('App\Models\Post', 'parent_id');
     }
-    // belongsToManyメソッド
     public function likes(): BelongsToMany
     {
-        // 第１引数には関係するモデルのモデル名。
-        // 第２引数は中間テーブルのテーブル名。
-        // (第２引数を省略すると、中間テーブル名は2つのモデル名の単数形をアルファベット順に
-        //  結合した名前であるという前提で処理される。)
-        // post_userという中間テーブルが存在するという前提で処理される。
         return $this->belongsToMany('App\Models\User', 'likes')->withTimestamps();
     }
-
-    // $post->isLikedBy(Auth::user())
-    // ユーザーがログインしていなければAuth::user()の戻り値はnull
-    // ?を付けると、その引数がnullであることも許容される。
     public function isLikedBy(?User $user): bool
     {
         return $user
-        // (bool)とは、型キャストと呼ばれるPHPの機能
-        // 変数の前に記述し、その変数をかっこ内に指定した型に変換
-        // (bool)と記述することで変数を論理値(trueもしくはfalse)に変換
             ? (bool)$this->likes->where('id', $user->id)->count()
             : false;
     }
@@ -69,9 +55,7 @@ class Post extends Model
             : null;
 
     }
-    // アクセサ(モデルに持たせるget...Attributeという形式の名前のメソッド)
     public function getCountLikesAttribute(): int
-    // $post->count_likes で、このメソッドを使う（メソッドの呼び出し時に、()は不要）
     {
         return $this->likes->count();
     }

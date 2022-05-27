@@ -27,26 +27,14 @@ class Roadmap extends Model
         // belongsToManyメソッド
         public function saves(): BelongsToMany
         {
-            // 第１引数には関係するモデルのモデル名。
-            // 第２引数は中間テーブルのテーブル名。
-            // (第２引数を省略すると、中間テーブル名は2つのモデル名の単数形をアルファベット順に
-            //  結合した名前であるという前提で処理される。)
-            // post_userという中間テーブルが存在するという前提で処理される。
             return $this->belongsToMany('App\Models\User', 'saves')
                 ->withPivot(['created_at'])
                 ->orderBy('pivot_created_at', 'desc')
                 ->withTimestamps();
         }
-    
-        // $post->isLikedBy(Auth::user())
-        // ユーザーがログインしていなければAuth::user()の戻り値はnull
-        // ?を付けると、その引数がnullであることも許容される。
         public function isSavedBy(?User $user): bool
         {
             return $user
-            // (bool)とは、型キャストと呼ばれるPHPの機能
-            // 変数の前に記述し、その変数をかっこ内に指定した型に変換
-            // (bool)と記述することで変数を論理値(trueもしくはfalse)に変換
                 ? (bool)$this->saves->where('id', $user->id)->count()
                 : false;
         }
@@ -58,10 +46,10 @@ class Roadmap extends Model
     
         }
     
-        // アクセサ(モデルに持たせるget...Attributeという形式の名前のメソッド)
-        public function getCountSavesAttribute(): int
-        // $post->count_likes で、このメソッドを使う（メソッドの呼び出し時に、()は不要）
-        {
-            return $this->saves->count();
-        }
+        // // アクセサ(モデルに持たせるget...Attributeという形式の名前のメソッド)
+        // public function getCountSavesAttribute(): int
+        // // $post->count_likes で、このメソッドを使う（メソッドの呼び出し時に、()は不要）
+        // {
+        //     return $this->saves->count();
+        // }
 }

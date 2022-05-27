@@ -22,16 +22,14 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'content' => $this->content,
-            // 'is_public' => $this->is_public,
             'created_at' => $this->created_at->format('Y/m/d H:i'),
-            // 'since' => $this->created_at->format('Y-m-d H:i:s'),
             // '_embedded' => [
                 // whenLoadedは ::with()など でリレーションが既にロードされている場合にのみ、
                 // リソースレスポンスへリレーションを含める。
                 'user' => new UserResource($this->whenLoaded('user')),
                 'count_likes' => $this->count_likes,
                 'is_liked' => $this->isLikedBy(Auth::user()),
-                'LikedAt' => $this->LikedAt(Auth::user()),
+                // 'LikedAt' => $this->LikedAt(Auth::user()),
                 'tags' => TagResource::collection($this->whenLoaded('tags')),
                 'comments'=> CommentResource::collection(
                     // https://github.com/laravel/framework/issues/27950

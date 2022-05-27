@@ -31,7 +31,6 @@ class PostController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'content'=>'required|max:250',
-            // 'is_public'=>'required',
         ]);
 
         if($validator->fails())
@@ -45,7 +44,6 @@ class PostController extends Controller
         {
             $post = new Post;
             $post->content = $request->content;
-            // $post->is_public = $request->is_public;
             $post->user_id = $request->user()->id;
             $post->save();
 
@@ -54,7 +52,7 @@ class PostController extends Controller
 
             foreach ($sentence_list as $sentence) {
                 // 1文字目が「#」であれば、以下の処理をする。
-                // substr($tagName, 1) は、「#」以外の文字列
+                // substr($tagName, 1) は、「#」より後の文字列
                 if (substr($sentence, 0, 1) === "#") {
                     // firstOrCreateメソッドで、既にtagがテーブルに存在していれば、そのモデルを返し、
                     // テーブルに存在しなければ、そのレコードをテーブルに保存した上で、モデルを返す。
@@ -135,17 +133,12 @@ class PostController extends Controller
         $user = User::where('id', $id)->first();
         if($request->since){
             $posts = $user->likes()
-                // ->whereHas('likes', function($query) use ($since, $id)  {
-                //     $query->where('likes.created_at', '<', $since);
-                // })
                 ->where('likes.created_at',  '<', $since)
                 ->with(['tags', 'user'])
                 ->take($per_page+1)
                 ->get();
         }else{
             $posts = $user->likes()->with(['tags', 'user'])
-                // ->withPivot(['created_at'])
-                // ->orderBy('pivot_created_at', 'desc')
                 ->take($per_page+1)
                 ->get();
         }
@@ -154,7 +147,6 @@ class PostController extends Controller
                 ? $request->url()."?since=".$posts[count($posts)-2]["pivot"]["created_at"] : null,
             'data' => PostResource::collection($posts->take($per_page)),
         ];
-        // return PostResource::collection($posts);
     }
     public function followingsPost(Request $request)
     {
@@ -251,7 +243,6 @@ class PostController extends Controller
         if($request->since){
             $posts = Post::where('content', 'like', "%{$word}%")
                 ->with(['tags', 'user'])
-                // ->orderByDesc('created_at')
                 ->where('created_at', '<', $since)
                 ->latest('created_at')
                 ->take($per_page+1)

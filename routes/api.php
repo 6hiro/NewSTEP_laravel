@@ -24,9 +24,6 @@ use App\Http\Resources\UserResource;
 |
 */
 
-// Route::middleware(['verified'])->group(function(){
-//     // メール
-// });
 Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
 Route::post('/register', [AuthController::class, 'register']);

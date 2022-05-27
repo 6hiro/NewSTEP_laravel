@@ -24,14 +24,14 @@ class RoadmapResource extends JsonResource
             'overview' => $this->overview,
             'is_public' => $this->is_public,
             'created_at' => $this->created_at->format('Y/m/d'),
-            'created' => $this->created_at,
+            // 'created' => $this->created_at,
             'updated_at' => $this->updated_at->format('Y/m/d'),
 
             // '_embedded' => [
                 // whenLoadedは ::with()など でリレーションが既にロードされている場合にのみ、
                 // リソースレスポンスへリレーションを含める。
                 'count_saves' => $this->count_saves,
-                'savedAt' => $this->savedAt(Auth::user()),
+                // 'savedAt' => $this->savedAt(Auth::user()),
                 'is_saved' => $this->isSavedBy(Auth::user()),
                 'user' => new UserResource($this->whenLoaded('user')),
                 'steps'=> StepResource::collection(

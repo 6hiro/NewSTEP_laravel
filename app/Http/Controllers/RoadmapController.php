@@ -12,27 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RoadmapController extends Controller
 {
-    // public function show(Request $request, string $id){
-    //     // 個別のデータ
-    //     $user_id = $request->user()->id;
-    //     $roadmaps = Roadmap::with(['user'])
-    //     // ->whereHas('user', function($q) use ($user_id){
-    //     //     $q->where('user_id', $user_id)
-    //     //     ->orWhere('is_public', true);
-    //     // })
-    //     ->find($id);
-
-    //     if($roadmaps["is_public"]===false && $roadmaps["user"]["id"]!==$user_id){
-    //         return response()->json([
-    //             'roamap'=>null,
-    //         ]);
-    //     }
-
-    //     return response()->json([
-    //         'a'=>$roadmaps["is_public"],
-    //         'roamap'=>new RoadmapResource($roadmaps),
-    //     ]);
-    // }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -66,7 +45,6 @@ class RoadmapController extends Controller
     }
     public function update(Request $request, Roadmap $roadmap)
     {
-        // is_publicだけ変更できる
         if($request->user()->id !== $roadmap->user_id)
         {
             return response()->json([], 401);
