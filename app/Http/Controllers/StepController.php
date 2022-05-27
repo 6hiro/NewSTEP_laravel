@@ -25,8 +25,19 @@ class StepController extends Controller
         $user_id = $request->user()->id;
         $roadmap_id = $id;
 
-        $roadmap = Roadmap::with(['user', 'steps'])->where('id', $id)->first();
+        // $roadmap = Roadmap::with(['user', 'steps'])->where('id', $id)->first();
+        $roadmaps = Roadmap::with(['user'])
+            ->whereHas('user', function($q) use ($user_id){
+                $q->where('user_id', $user_id)
+                ->orWhere('is_public', true);
+            })
+            ->find($id);
 
+        if($roadmaps===null){
+            return response()->json([
+                'roadmap'=>null,
+            ], 200);
+        }
         return response()->json([
             'roadmap'=>new RoadmapResource($roadmap),
         ], 200);

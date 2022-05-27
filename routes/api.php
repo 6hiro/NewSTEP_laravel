@@ -69,7 +69,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     Route::post('/post/comment', [PostController::class, 'addComment'])->name('addComment');
     Route::delete('/post/comment/{comment}', [PostController::class, 'destroyComment'])->name('destroyComment');
     // Roadmap
-    Route::get('/roadmap/{id}', [RoadmapController::class, 'show'])->name('roadmapShow'); 
+    // Route::get('/roadmap/{id}', [RoadmapController::class, 'show'])->name('roadmapShow'); 
     Route::get('/roadmap/user/{id}', [UserController::class, 'userRoadmaps'])->name('userRoadmaps');
     // Route::get('/roadmap/user/{id}', [RoadmapController::class, 'userRoadmap'])->name('userRoadmap'); 
     Route::post('/roadmap', [RoadmapController::class, 'store'])->name('roadmapStore');

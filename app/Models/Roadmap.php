@@ -32,7 +32,10 @@ class Roadmap extends Model
             // (第２引数を省略すると、中間テーブル名は2つのモデル名の単数形をアルファベット順に
             //  結合した名前であるという前提で処理される。)
             // post_userという中間テーブルが存在するという前提で処理される。
-            return $this->belongsToMany('App\Models\User', 'saves')->withTimestamps();
+            return $this->belongsToMany('App\Models\User', 'saves')
+                ->withPivot(['created_at'])
+                ->orderBy('pivot_created_at', 'desc')
+                ->withTimestamps();
         }
     
         // $post->isLikedBy(Auth::user())
@@ -46,6 +49,13 @@ class Roadmap extends Model
             // (bool)と記述することで変数を論理値(trueもしくはfalse)に変換
                 ? (bool)$this->saves->where('id', $user->id)->count()
                 : false;
+        }
+        public function savedAt(?User $user): string | null
+        {        
+            return $this->isSavedBy($user) 
+                ? $this->saves->where('id', $user->id)->first()->pivot['created_at'] 
+                : null;
+    
         }
     
         // アクセサ(モデルに持たせるget...Attributeという形式の名前のメソッド)

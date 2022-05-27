@@ -135,43 +135,21 @@ class PostController extends Controller
         $user = User::where('id', $id)->first();
         if($request->since){
             $posts = $user->likes()
-                // ->withPivot(['created_at'])
+                // ->whereHas('likes', function($query) use ($since, $id)  {
+                //     $query->where('likes.created_at', '<', $since);
+                // })
+                ->where('likes.created_at',  '<', $since)
                 ->with(['tags', 'user'])
-                ->withPivot('created_at AS joined_at')
-                ->orderBy('joined_at', 'desc')
-                ->whereHas('likes', function($query) use ($since, $id)  {
-                    $query->where('likes.created_at', '<', $since);
-                })
-                // ->where('is_shared', false)
-                // ->withPivot(['created_at'])
-
-                // ->orderBy('pivot_created_at', 'desc')
                 ->take($per_page+1)
                 ->get();
-            // $posts = Post::with(['tags', 'user'])
-            //     ->whereHas('user', function($q) use ($id){
-            //         $q->where('user_id', $id);
-            //     })
-            //     // ->orWhere('is_public', true)
-            //     ->whereHas('likes', function($query) use ($since, $id)  {
-            //         $query->where('likes.user_id', $id)
-            //         ->where('likes.created_at', '<', $since);
-            //     })
-            //     // ->withPivot(['created_at'])
-            //     ->orderBy('likes.created_at', 'desc')
-            //     // ->latest('created_at')
-            //     ->take($per_page+1)
-            //     ->get();
         }else{
             $posts = $user->likes()->with(['tags', 'user'])
-                ->withPivot(['created_at'])
-                ->orderBy('pivot_created_at', 'desc')
+                // ->withPivot(['created_at'])
+                // ->orderBy('pivot_created_at', 'desc')
                 ->take($per_page+1)
                 ->get();
         }
         return [
-            // 'a' => $user->likes()->with(['tags', 'user', "likes"])->get(),
-            'a' =>  $user->likes,
             'next_page_link' => $posts->count()>$per_page
                 ? $request->url()."?since=".$posts[count($posts)-2]["pivot"]["created_at"] : null,
             'data' => PostResource::collection($posts->take($per_page)),

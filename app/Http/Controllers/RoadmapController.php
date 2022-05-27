@@ -12,19 +12,27 @@ use Illuminate\Support\Facades\Auth;
 
 class RoadmapController extends Controller
 {
-    public function show(Request $request, string $id){
-        // 個別のデータ
-        $user_id = $request->user()->id;
-        $roadmaps = Roadmap::with(['user'])
-        ->whereHas('user', function($q) use ($user_id){
-            $q->where('user_id', $user_id)
-            ->orWhere('is_public', true);
-        })
-        ->find($id);
-        return response()->json([
-            'roamap'=>new RoadmapResource($roadmaps),
-        ]);
-    }
+    // public function show(Request $request, string $id){
+    //     // 個別のデータ
+    //     $user_id = $request->user()->id;
+    //     $roadmaps = Roadmap::with(['user'])
+    //     // ->whereHas('user', function($q) use ($user_id){
+    //     //     $q->where('user_id', $user_id)
+    //     //     ->orWhere('is_public', true);
+    //     // })
+    //     ->find($id);
+
+    //     if($roadmaps["is_public"]===false && $roadmaps["user"]["id"]!==$user_id){
+    //         return response()->json([
+    //             'roamap'=>null,
+    //         ]);
+    //     }
+
+    //     return response()->json([
+    //         'a'=>$roadmaps["is_public"],
+    //         'roamap'=>new RoadmapResource($roadmaps),
+    //     ]);
+    // }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -94,42 +102,38 @@ class RoadmapController extends Controller
         $since = $request->since;
         $per_page = 10;
         $user_id = $request->user()->id;
-
+        \DB::enableQueryLog();
         if($request->since){
             $roadmaps = $user->saves()
                 ->with(['user'])
-                ->whereHas('saves', function($q) use ($user_id, $since){
-                    $q->where('saves.user_id', $user_id)
-                    ->Where('saves.created_at', '<', $since)
-                    ->orWhere('is_public', true);
+                ->where('saves.created_at', '<', $since)
+                ->where(function($q) use ($user_id) {
+                    $q->Where('is_public', true)
+                    // ->orWhereHas('saves', function($q) use ($user_id){
+                    //     $q->where('saves.user_id', $user_id);
+                    // });
+                    ->orWhere('saves.user_id', $user_id);
                 })
+                // ->whereHas('saves', function($q) use ($since){
+                //     $q->Where('saves.created_at', '<', $since);
+                // })
                 ->take($per_page+1)
                 ->get();
 
         }else{
             $roadmaps = $user->saves()
                 ->with(['user'])
-                // ->whereHas('saves', function($q) use ($user_id){
-                //     $q->where('user_id', $user_id)          
-                //     ->orWhere('is_public', true);
-                // })
-                ->orWhere('is_public', true)
-                // ->orderByDesc('created_at')
+                ->where(function($q) use ($user_id) {
+                    $q->Where('is_public', true)
+                    ->orWhere('roadmaps.user_id', $user_id);
+                })
                 ->take($per_page+1)
                 ->get();
-
-                $roadmaps = $user->saves()
-                    ->Where('is_public', true)
-                    ->with(['user'])
-                    ->withPivot(['created_at'])
-                    ->orderBy('pivot_created_at', 'desc')
-                    ->take($per_page+1)
-                    ->get();
-            }
+        }
+        // dd(\DB::getQueryLog());
         return [
-            'A'=> $user->saves,
             'next_page_link'=>$roadmaps->count()>$per_page 
-                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["created_at"] : null,
+                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["pivot"]["created_at"] : null,
             'data' => RoadmapResource::collection($roadmaps->take($per_page)),
         ];
 
@@ -168,8 +172,10 @@ class RoadmapController extends Controller
                 $q->where('user_id', $user_id)
                 ->orWhere('is_public', true);
             })
-            ->where('title', 'like', "%{$word}%")
-            ->orWhere('overview', 'like', "%{$word}%")
+            ->where(function($q) use ($word) {
+                $q->where('title', 'like', "%{$word}%")
+                ->orWhere('overview', 'like', "%{$word}%");
+            })
             ->withCount('saves')
             ->orderBy('saves_count', 'desc')
             ->orderByDesc('created_at')
@@ -190,8 +196,10 @@ class RoadmapController extends Controller
                     ->orWhere('is_public', true);
                 })
                 ->where('created_at', '<', $since)
-                ->where('title', 'like', "%{$word}%")
-                ->orWhere('overview', 'like', "%{$word}%")
+                ->where(function($q) use ($word) {
+                    $q->where('title', 'like', "%{$word}%")
+                    ->orWhere('overview', 'like', "%{$word}%");
+                })
                 // ->latest('created_at')
                 ->orderByDesc('created_at')
                 ->take($per_page+1)
@@ -203,8 +211,10 @@ class RoadmapController extends Controller
                     $q->where('user_id', $user_id)
                     ->orWhere('is_public', true);
                 })
-                ->where('title', 'like', "%{$word}%")
-                ->orWhere('overview', 'like', "%{$word}%")
+                ->where(function($q) use ($word) {
+                    $q->where('title', 'like', "%{$word}%")
+                    ->orWhere('overview', 'like', "%{$word}%");
+                })
                 ->orderByDesc('created_at')
                 ->take($per_page+1)
                 ->get();

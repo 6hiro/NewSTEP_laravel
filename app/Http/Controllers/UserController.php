@@ -25,24 +25,53 @@ class UserController extends Controller
         $per_page = 10;
 
         if($since){
-            $roadmaps = Roadmap::with('user')
-            ->whereHas('user', function($q) use ($id){
-                $q->where('user_id', $id);
-            })
-            ->where('created_at', '<', $since)
-            ->latest('created_at')
-            ->take($per_page+1)
-            ->get();
+            if($request->user()->id===$id)
+            {   
+                $roadmaps = Roadmap::with('user')
+                    ->whereHas('user', function($q) use ($id){
+                        $q->where('user_id', $id);
+                    })
+                    ->where('created_at', '<', $since)
+                    ->latest('created_at')
+                    ->take($per_page+1)
+                    ->get();
+            }
+            else
+            {
+                $roadmaps = Roadmap::with('user')
+                    ->whereHas('user', function($q) use ($id){
+                        $q->where('user_id', $id);
+                    })
+                    ->where('is_public', true)
+                    ->where('created_at', '<', $since)
+                    ->latest('created_at')
+                    ->take($per_page+1)
+                    ->get();
+            }
         }
         else
         {
-            $roadmaps = Roadmap::with('user')
+            if($request->user()->id===$id)  
+            {
+                $roadmaps = Roadmap::with('user')
                 ->whereHas('user', function($q) use ($id){
                     $q->where('user_id', $id);
                 })
                 ->orderByDesc('created_at')
                 ->take($per_page+1)
                 ->get();
+            }
+            else
+            {
+                $roadmaps = Roadmap::with('user')
+                ->whereHas('user', function($q) use ($id){
+                    $q->where('user_id', $id);
+                })
+                ->where('is_public', true)
+                ->orderByDesc('created_at')
+                ->take($per_page+1)
+                ->get();
+            }
         }
         return [
             'next_page_link'=>$roadmaps->count()>$per_page 
