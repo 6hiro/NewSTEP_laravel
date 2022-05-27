@@ -112,7 +112,7 @@ class RoadmapController extends Controller
                     // ->orWhereHas('saves', function($q) use ($user_id){
                     //     $q->where('saves.user_id', $user_id);
                     // });
-                    ->orWhere('saves.user_id', $user_id);
+                    ->orWhere('roadmaps.user_id', $user_id);
                 })
                 // ->whereHas('saves', function($q) use ($since){
                 //     $q->Where('saves.created_at', '<', $since);
