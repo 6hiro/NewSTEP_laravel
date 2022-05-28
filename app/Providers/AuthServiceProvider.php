@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->registerPolicies();
+        $this->registerPolicies();
 
         //
         // VerifyEmail::toMailUsing(function ($notifiable, $url) {
@@ -38,11 +38,11 @@ class AuthServiceProvider extends ServiceProvider
         //         ->action('Verify Email Address', $spaUrl);
         // });
 
-        VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            return (new MailMessage)
-                ->subject('メールアドレスを検証')
-                ->line('メールアドレスの検証を行うため下記のボタンをクリックして下さい。')
-                ->action('メールアドレスを検証', $url);
-        });
+        // VerifyEmail::toMailUsing(function ($notifiable, $url) {
+        //     return (new MailMessage)
+        //         ->subject('メールアドレスを検証')
+        //         ->line('メールアドレスの検証を行うため下記のボタンをクリックして下さい。')
+        //         ->action('メールアドレスを検証', $url);
+        // });
     }
 }
