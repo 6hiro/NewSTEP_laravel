@@ -80,7 +80,7 @@ class RoadmapController extends Controller
         $since = $request->since;
         $per_page = 10;
         $user_id = $request->user()->id;
-        \DB::enableQueryLog();
+        // \DB::enableQueryLog();
         if($request->since){
             $roadmaps = $user->saves()
                 ->with(['user'])
