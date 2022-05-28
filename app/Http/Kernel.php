@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         // https://stackoverflow.com/questions/66048023/laravel-8-sanctum-spa-auth-session-store-not-set-on-request
         \Illuminate\Session\Middleware\StartSession::class
+        \App\Http\Middleware\ForceHttps::class, // 追加
     ];
 
     /**
