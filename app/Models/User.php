@@ -48,10 +48,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s.v';
+    }
+
     public function sendPasswordResetNotification($token)
     {
 
-        $url = 'http://127.0.0.1:8000/auth/reset-password?token=' . $token;
+        $url = env('FROMTEMD_URL') . '/auth/reset-password?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }

@@ -11,6 +11,10 @@ class Tag extends Model
 {
     use HasFactory;
 
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s.v';
+    }
     // PostControllerのstoreメソッド内のfirstOrCreateを使うときに必要
     protected $fillable = [
         'name'

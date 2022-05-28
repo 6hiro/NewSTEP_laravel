@@ -75,7 +75,7 @@ class UserController extends Controller
         }
         return [
             'next_page_link'=>$roadmaps->count()>$per_page 
-                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["created_at"] : null,
+                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["created_at"]->format('Y-m-d H:i:s.v') : null,
             'data' => RoadmapResource::collection($roadmaps->take($per_page)),
         ];
     }
@@ -104,7 +104,7 @@ class UserController extends Controller
         
         return [
             'next_page_link' => $posts->count() > $per_page 
-                ? $request->url()."?since=".$posts[count($posts)-2]["created_at"]
+                ? $request->url()."?since=".$posts[count($posts)-2]["created_at"]->format('Y-m-d H:i:s.v')
                 : null,
             'data' => PostResource::collection($posts->take($per_page)),
         ];

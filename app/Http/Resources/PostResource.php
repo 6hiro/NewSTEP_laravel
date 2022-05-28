@@ -23,6 +23,8 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'content' => $this->content,
             'created_at' => $this->created_at->format('Y/m/d H:i'),
+            // 'a' => $this->created_at->format('Y-m-d H:i:s.v'),
+
             // '_embedded' => [
                 // whenLoadedは ::with()など でリレーションが既にロードされている場合にのみ、
                 // リソースレスポンスへリレーションを含める。

@@ -122,7 +122,7 @@ class PostController extends Controller
         }
         return [
             'next_page_link'=>$posts->count()>$per_page 
-                ? $request->url()."?since=".$posts[count($posts)-2]["created_at"] : null,
+                ? $request->url()."?since=".$posts[count($posts)-2]["created_at"]->format('Y-m-d H:i:s.v') : null,
             'data' => PostResource::collection($posts->take($per_page)),
         ];
     }
@@ -144,7 +144,7 @@ class PostController extends Controller
         }
         return [
             'next_page_link' => $posts->count()>$per_page
-                ? $request->url()."?since=".$posts[count($posts)-2]["pivot"]["created_at"] : null,
+                ? $request->url()."?since=".$posts[count($posts)-2]["pivot"]["created_at"]->format('Y-m-d H:i:s.v') : null,
             'data' => PostResource::collection($posts->take($per_page)),
         ];
     }
@@ -171,7 +171,7 @@ class PostController extends Controller
         }
         return [
             'next_page_link'=>$posts->count()>$per_page
-                ? $request->url()."?since=".$posts[count($posts)-2]["created_at"] : null,
+                ? $request->url()."?since=".$posts[count($posts)-2]["created_at"]->format('Y-m-d H:i:s.v') : null,
             'data' => PostResource::collection($posts->take($per_page)),
         ];
     }
@@ -256,7 +256,7 @@ class PostController extends Controller
         }
         return [
             'next_page_link'=>$posts->count()>$per_page 
-                ? $request->url()."?since=".$posts[count($posts)-2]["created_at"] : null,
+                ? $request->url()."?since=".$posts[count($posts)-2]["created_at"]->format('Y-m-d H:i:s.v') : null,
             'data' => PostResource::collection($posts->take($per_page)),
         ];
     }

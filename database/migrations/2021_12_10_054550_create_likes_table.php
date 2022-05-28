@@ -26,7 +26,8 @@ class CreateLikesTable extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             // $table->bigInteger('post_id');
             // $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-            $table->timestamps();
+            // $table->timestamps();
+            $table->timestamps(6);
         });
     }
 

@@ -19,7 +19,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->uuid('roadmap_id');
             $table->foreign('roadmap_id')->references('id')->on('roadmaps')->onDelete('cascade');
-            $table->timestamps();
+            // $table->timestamps();
+            $table->timestamps(6);
         });
     }
 

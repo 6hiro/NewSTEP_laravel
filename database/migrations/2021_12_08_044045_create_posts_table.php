@@ -22,7 +22,8 @@ class CreatePostsTable extends Migration
             //       ->on('posts')->onUpdate('cascade')->onDelete('SET NULL');
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
+            // $table->timestamps();
+            $table->timestamps(6);
         });
 
         Schema::table('posts', function (Blueprint $table) 

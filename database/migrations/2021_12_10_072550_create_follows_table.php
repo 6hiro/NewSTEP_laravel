@@ -34,7 +34,8 @@ class CreateFollowsTable extends Migration
             $table->uuid('followee_id');
             $table->foreign('followee_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->timestamps();
+            // $table->timestamps();
+            $table->timestamps(6);
         });
     }
 

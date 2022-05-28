@@ -13,7 +13,13 @@ use Illuminate\Database\Eloquent\Relations\hasOneThrough;
 
 class Step extends Model
 {
-    // use HasFactory;
+    use HasFactory;
+
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s.v';
+    }
+
     public function roadmap(): BelongsTo
     {
         return $this->belongsTo('App\Models\Roadmap');

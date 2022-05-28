@@ -111,7 +111,7 @@ class RoadmapController extends Controller
         // dd(\DB::getQueryLog());
         return [
             'next_page_link'=>$roadmaps->count()>$per_page 
-                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["pivot"]["created_at"] : null,
+                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["pivot"]["created_at"]->format('Y-m-d H:i:s.v') : null,
             'data' => RoadmapResource::collection($roadmaps->take($per_page)),
         ];
 
@@ -200,7 +200,7 @@ class RoadmapController extends Controller
 
         return [
             'next_page_link'=>$roadmaps->count() > $per_page 
-                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["created_at"] : null,
+                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["created_at"]->format('Y-m-d H:i:s.v') : null,
             'data' => RoadmapResource::collection($roadmaps->take($per_page)),
         ];
     }
@@ -230,7 +230,7 @@ class RoadmapController extends Controller
 
         return [
             'next_page_link'=>$roadmaps->count()>$per_page 
-                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["created_at"] : null,
+                ? $request->url()."?since=".$roadmaps[count($roadmaps)-2]["created_at"]->format('Y-m-d H:i:s.v') : null,
             'data' => RoadmapResource::collection($roadmaps->take($per_page)),
         ];
     }

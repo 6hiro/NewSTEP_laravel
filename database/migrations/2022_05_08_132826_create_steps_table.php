@@ -23,7 +23,8 @@ return new class extends Migration
             // Foreign key.
             $table->uuid('roadmap_id');
             $table->foreign('roadmap_id')->references('id')->on('roadmaps')->onDelete('cascade');
-            $table->timestamps();
+            // $table->timestamps();
+            $table->timestamps(6);
         });
     }
 

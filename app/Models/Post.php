@@ -13,19 +13,19 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Post extends Model
 {
-    // use HasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'content', 'is_public'
     ];
     // カラムの型を指定
     // protected $casts = [
-    //     'is_public' => 'bool'
     // ];
-
-    // $post = Post::find(12));
-    // $post->user->name
-    // のようにPostモデルを起点に、紐づくUserモデルの各プロパティにアクセスできる
+    public function getDateFormat()
+    {
+        return 'Y-m-d H:i:s.v';
+    }
+    
     public function user(): BelongsTo
     {
         return $this->belongsTo('App\Models\User');
