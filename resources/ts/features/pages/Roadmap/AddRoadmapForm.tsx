@@ -54,7 +54,7 @@ const AddRoadmapForm: React.FC = () => {
               }
             }else if (fetchAsyncNewRoadmap.fulfilled.match(result)) {
               dispatch(fetchPostEnd());
-              // navigate("/")
+              navigate("/")
             }
           }}
           validationSchema={
