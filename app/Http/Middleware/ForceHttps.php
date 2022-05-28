@@ -14,15 +14,15 @@ class ForceHttps
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    // public function handle(Request $request, Closure $next)
+    // {
+    //     return $next($request);
+    // }
+    public function handle($request, Closure $next)
     {
-        // return $next($request);
-        public function handle($request, Closure $next)
-        {
-          if (\App::environment(['production']) && $_SERVER["HTTP_X_FORWARDED_PROTO"] != 'https') {
-            return redirect()->secure($request->getRequestUri());
-          }
-          return $next($request);
-        }
+      if (\App::environment(['production']) && $_SERVER["HTTP_X_FORWARDED_PROTO"] != 'https') {
+        return redirect()->secure($request->getRequestUri());
+      }
+      return $next($request);
     }
 }
