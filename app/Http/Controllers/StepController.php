@@ -26,14 +26,14 @@ class StepController extends Controller
         $roadmap_id = $id;
 
         // $roadmap = Roadmap::with(['user', 'steps'])->where('id', $id)->first();
-        $roadmaps = Roadmap::with(['user'])
+        $roadmap = Roadmap::with(['user', 'steps'])
             ->whereHas('user', function($q) use ($user_id){
                 $q->where('user_id', $user_id)
                 ->orWhere('is_public', true);
             })
             ->find($id);
 
-        if($roadmaps===null){
+        if($roadmap===null){
             return response()->json([
                 'roadmap'=>null,
             ], 200);

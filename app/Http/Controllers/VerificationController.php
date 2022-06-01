@@ -9,6 +9,7 @@ class VerificationController extends Controller
 {
     //
     public function verify($user_id, Request $request) {
+        // https://stackoverflow.com/questions/52866689/laravel-5-6-signed-url-wont-work-in-app-env-production
         // if (!$request->hasValidSignature()) {
         //     return response()->json(["msg" => "Invalid/Expired url provided."], 401);
         // }
